@@ -1,0 +1,26 @@
+def print_duplicate_elements(arr):
+    n = len(arr)
+    i = 0
+
+    while i < n:
+        count = 1
+
+        # Count occurrences of current element
+        while i < n - 1 and arr[i] == arr[i + 1]:
+            count += 1
+            i += 1
+
+        # Print if frequency is more than 1
+        if count > 1:
+            print(f"{arr[i]}->{count}", end=", ")
+
+        i += 1
+
+# Sample Input
+arr = [1, 1, 1, 2, 4, 4, 4, 4, 5, 6, 9, 9]
+
+# Sort the array
+arr.sort()
+
+# Print elements with frequency more than 1
+print_duplicate_elements(arr)
