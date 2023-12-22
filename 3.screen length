@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+
+void justify_sentence(char sentence[], int screen_length) {
+    char *words[100];  // Assuming a maximum of 100 words
+    int num_words = 0;
+
+    // Tokenize the sentence into words
+    char *token = strtok(sentence, " ");
+    while (token != NULL) {
+        words[num_words++] = token;
+        token = strtok(NULL, " ");
+    }
+
+    if (num_words > 1) {
+        int total_spaces = screen_length - strlen(words[0]);
+        int spaces_between_words = total_spaces / (num_words - 1);
+        int extra_spaces = total_spaces % (num_words - 1);
+
+        printf("%s", words[0]);
+
+        for (int i = 1; i < num_words; i++) {
+            int spaces = spaces_between_words + (i <= extra_spaces ? 1 : 0);
+            for (int j = 0; j < spaces; j++) {
+                printf("*");
+            }
+            printf("%s", words[i]);
+        }
+
+        printf("\n");
+    } else {
+        printf("%s\n", sentence);
+    }
+}
+
+int main() {
+    // Sample Input 1
+    char sentence1[] = "Welcome to Zoho Corporation";
+    int screen_length1 = 34;
+    justify_sentence(sentence1, screen_length1);
+
+    // Sample Input 2
+    char sentence2[] = "Welcome to Zoho Corporation";
+    int screen_length2 = 36;
+    justify_sentence(sentence2, screen_length2);
+
+    return 0;
+}
